@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class PassportController extends Controller
 {
     const TOKEN_STRING = 'CatalogApiTest';
+
     /**
      * Обработчик запроса на регистрацию пользователей
      *
