@@ -148,8 +148,7 @@ class CategoryController extends Controller
     public function all()
     {
         return response()->json([
-            'success' => true,
-            'data'    => Category::all()->toArray()
+            'data' => Category::all()->toArray()
         ]);
     }
 
@@ -162,9 +161,19 @@ class CategoryController extends Controller
      */
     public function getProductsByCategoryId($id)
     {
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json([
+                'success' => false,
+                'message' => "Category with id {$id} not found"
+            ]);
+        }
+
+        $products = $category->products()->get();
+
         return response()->json([
-            'success' => true,
-            'data'    => Category::find($id)->products()
+            'data' => $products
         ]);
     }
 }

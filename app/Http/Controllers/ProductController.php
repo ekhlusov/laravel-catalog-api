@@ -56,12 +56,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title' => 'required',
-            'price' => 'required|integer', // @TODO или float
-            'category_id' => 'required|integer|max:150|exists:categories,id', // @TODO сделать без категории 0 - по умолчанию
-            'category_id.exists' => 'Not an existing ID',
-        ]);
+        $this->validate($request,
+            [
+                'title'       => 'required',
+                'price'       => 'required|integer', // @TODO float
+                'category_id' => 'required|integer|max:150|exists:categories,id', // @TODO сделать без категории 0 - по умолчанию
+            ],
+            [
+                'category_id.exists' => "Category with id {$request->category_id} not found"
+            ]
+        );
         $product = new Product();
         $product->title = $request->title;
         $product->price = $request->price;
@@ -154,7 +158,6 @@ class ProductController extends Controller
     public function all()
     {
         return response()->json([
-            'success' => true,
             'data'    => Product::all()->toArray()
         ]);
     }

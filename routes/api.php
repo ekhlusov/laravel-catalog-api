@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
 
+Route::get('products/all', 'ProductController@all');
+
+Route::get('categories/all', 'CategoryController@all');
+Route::get('category/{id}', 'CategoryController@getProductsByCategoryId');
+
 Route::middleware('auth:api')->group(function () {
     Route::get('user', 'PassportController@details');
     Route::resource('products', 'ProductController');
     Route::resource('categories', 'CategoryController');
 });
-
-Route::get('products', 'ProductController@all');
-
-Route::get('category/{id}', 'CategoryController@getProductsById');
-Route::get('category/all', 'CategoryController@all');
