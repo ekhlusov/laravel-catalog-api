@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // @TODO json ответ в отдельный хелпер
     /**
      * Получаем все товары авторизованного пользователя
      *
@@ -37,14 +36,14 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json([
                 'success' => false,
-                'message' => "Product with {$id} not found"
+                'message' => "Product with id {$id} not found"
             ], 400);
         }
 
         return response()->json([
             'success' => true,
             'data'    => $product->toArray()
-        ], 400);
+        ]);
     }
 
     /**
@@ -60,7 +59,7 @@ class ProductController extends Controller
             [
                 'title'       => 'required',
                 'price'       => 'required|integer', // @TODO float
-                'category_id' => 'required|integer|max:150|exists:categories,id', // @TODO сделать без категории 0 - по умолчанию
+                'category_id' => 'required|integer|max:150|exists:categories,id'
             ],
             [
                 'category_id.exists' => "Category with id {$request->category_id} not found"
@@ -100,7 +99,7 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json([
                 'success' => false,
-                'message' => "Product with {$id} not found"
+                'message' => "Product with id {$id} not found"
             ], 400);
         }
 
@@ -133,7 +132,7 @@ class ProductController extends Controller
         if (!$product) {
             return response()->json([
                 'success' => false,
-                'message' => "Product with {$id} not found"
+                'message' => "Product with id {$id} not found"
             ], 400);
         }
 
@@ -158,7 +157,7 @@ class ProductController extends Controller
     public function all()
     {
         return response()->json([
-            'data'    => Product::all()->toArray()
+            'data' => Product::all()->toArray()
         ]);
     }
 }

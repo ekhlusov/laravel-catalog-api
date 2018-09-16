@@ -49,9 +49,10 @@ class UserRegister extends Command
      */
     private function getData()
     {
-        $data['name'] = $this->ask('Введите логин пользователя:');
-        $data['email'] = $this->ask('Введите email пользователя:');
-        $data['password'] = $this->secret('Введите пароль пользователя:');
+        $data['name'] = $this->ask('Введите логин пользователя');
+        $data['email'] = $this->ask('Введите email пользователя');
+        $data['password'] = $this->secret('Введите пароль пользователя');
+        $data['password'] = bcrypt($data['password']);
 
         return $data;
     }
@@ -83,5 +84,7 @@ class UserRegister extends Command
         if (!$user->save()) {
             return $this->error('Ошибка сохранения пользователя');
         }
+
+        return $this->info('Пользователь успешно зарегистрирован');
     }
 }

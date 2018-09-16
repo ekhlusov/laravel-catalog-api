@@ -36,14 +36,14 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json([
                 'success' => false,
-                'message' => "Category with {$id} not found"
+                'message' => "Category with id {$id} not found"
             ], 400);
         }
 
         return response()->json([
             'success' => true,
             'data'    => $category->toArray()
-        ], 400);
+        ]);
     }
 
     /**
@@ -90,7 +90,7 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json([
                 'success' => false,
-                'message' => "Category with {$id} not found"
+                'message' => "Category with id {$id} not found"
             ], 400);
         }
 
@@ -99,7 +99,7 @@ class CategoryController extends Controller
         if ($updated) {
             return response()->json([
                 'success' => true,
-                'message' => "Category with {$id} successfully updated"
+                'message' => "Category with id {$id} successfully updated"
             ]);
         }
 
@@ -123,7 +123,7 @@ class CategoryController extends Controller
         if (!$category) {
             return response()->json([
                 'success' => false,
-                'message' => "Category with {$id} not found"
+                'message' => "Category with id {$id} not found"
             ], 400);
         }
 
@@ -167,7 +167,7 @@ class CategoryController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => "Category with id {$id} not found"
-            ]);
+            ], 500);
         }
 
         $products = $category->products()->get();

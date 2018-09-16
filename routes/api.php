@@ -11,7 +11,6 @@ Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
 
 Route::get('products/all', 'ProductController@all');
-
 Route::get('categories/all', 'CategoryController@all');
 Route::get('category/{id}', 'CategoryController@getProductsByCategoryId');
 
