@@ -4,7 +4,7 @@
 Для теста:
 1) Переходим в папку app в корне сервиса 
 2) Настраиваем БД и прописываем данные в .env файле
-3) php artisan migrate
+3) composer install && php artisan migrate && php artisan passport:intall
 4) php artisan serve
 5) Сервис будет доступен по адресу: http://127.0.0.1:8000
 ```
