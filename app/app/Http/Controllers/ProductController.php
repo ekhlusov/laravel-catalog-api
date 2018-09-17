@@ -107,8 +107,7 @@ class ProductController extends Controller
 
         if ($updated) {
             return response()->json([
-                'success' => true,
-                'message' => "Product with {$id} successfully updated"
+                'success' => true
             ]);
         }
 
@@ -138,8 +137,7 @@ class ProductController extends Controller
 
         if ($product->delete()) {
             return response()->json([
-                'success' => true,
-                'message' => "Product with id {$id} deleted"
+                'success' => true
             ]);
         }
 
@@ -157,6 +155,7 @@ class ProductController extends Controller
     public function all()
     {
         return response()->json([
+            'success' => true,
             'data' => Product::all()->toArray()
         ]);
     }

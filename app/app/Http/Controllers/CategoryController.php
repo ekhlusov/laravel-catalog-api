@@ -98,8 +98,7 @@ class CategoryController extends Controller
 
         if ($updated) {
             return response()->json([
-                'success' => true,
-                'message' => "Category with id {$id} successfully updated"
+                'success' => true
             ]);
         }
 
@@ -129,8 +128,7 @@ class CategoryController extends Controller
 
         if ($category->delete()) {
             return response()->json([
-                'success' => true,
-                'message' => "Category with id {$id} deleted"
+                'success' => true
             ]);
         }
 
@@ -148,6 +146,7 @@ class CategoryController extends Controller
     public function all()
     {
         return response()->json([
+            'success' => true,
             'data' => Category::all()->toArray()
         ]);
     }
@@ -173,6 +172,7 @@ class CategoryController extends Controller
         $products = $category->products()->get();
 
         return response()->json([
+            'success' => true,
             'data' => $products
         ]);
     }
