@@ -16,9 +16,10 @@ services:
     restart: always
     build: ./containers/db/
     ports:
-     - "54306:3306"
+     - "33306:3306"
     volumes:
       - ./runtime/db:/var/lib/mysql
+      - ./runtime/db:/var/log/mysql
     env_file: ./containers/db/.env
 
   php:
